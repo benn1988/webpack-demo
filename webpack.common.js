@@ -1,30 +1,21 @@
+// Base webpack config, used for both dev and prod env
+
 const path = require("path");
-var HtmlWebpackPlugin = require('html-webpack-plugin'); // Require html plugin, so that we can later use it
+var HtmlWebpackPlugin = require("html-webpack-plugin"); // Plugin to generate the HTML file for us
 
 module.exports = {
-    entry: {
-      main: "./src/index.js",
-      vendor: "./src/vendor.js"
-    }, 
-    plugins: [new HtmlWebpackPlugin({
-        template: "./src/template.html"
-    })], // plugin to generate the HTML and insert the generated file name into it
+    entry: {  // Entry files of our JS
+      main: "./src/index.js", // index.js -> main.js
+      vendor: "./src/vendor.js" // vendor.js -> vendor.js
+    },
     module: {
         rules: [
             {
-                test: /\.scss$/, // regex to target all css files
-                use: [
-                    "style-loader", // 3. Inject styles into DOM
-                    "css-loader",   // 2. Turns css into commonjs
-                    "sass-loader"   // 1. Turns sass into css
-                ]
-            },
-            {
-              test: /\.html$/,
+              test: /\.html$/,  // regex for html files
               use: ["html-loader"]
             },
             {
-              test: /\.(svg|png|jpg|gif)$/,
+              test: /\.(svg|png|jpg|gif)$/, // regex for different image file extensions
               use: {
                 loader: "file-loader",
                 options: {
@@ -35,5 +26,5 @@ module.exports = {
               }
             }
         ]
-    },
+    }
 };
