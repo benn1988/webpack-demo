@@ -2,7 +2,10 @@ const path = require("path");
 var HtmlWebpackPlugin = require('html-webpack-plugin'); // Require html plugin, so that we can later use it
 
 module.exports = {
-    entry: "./src/index.js",                // JS file for input
+    entry: {
+      main: "./src/index.js",
+      vendor: "./src/vendor.js"
+    }, 
     plugins: [new HtmlWebpackPlugin({
         template: "./src/template.html"
     })], // plugin to generate the HTML and insert the generated file name into it
